@@ -72,27 +72,11 @@ def build_crew(topic: str, groq_api_key: str) -> Crew:
 
     if not groq_api_key or not groq_api_key.strip():
         raise ValueError("Groq API key is missing.")
-
-    # -----------------------------------------------------------------------
-    # GROQ LLM
-    #
-    # LiteLLM/CrewAI uses:
-    # groq/<Groq model ID>
-    #
-    # Actual Groq model:
-    # openai/gpt-oss-120b
-    # -----------------------------------------------------------------------
-
-    llm = LLM(
-        model="groq/openai/gpt-oss-120b",
-        api_key=groq_api_key.strip(),
-        temperature=0.5,
-        cache=False,
-    )
-
-    # -----------------------------------------------------------------------
-    # RESEARCH AGENT
-    # -----------------------------------------------------------------------
+llm = LLM(
+    model="groq/openai/gpt-oss-120b",
+    api_key=groq_api_key.strip(),
+    temperature=0.5,
+)
 
     researcher = Agent(
         role="Senior Research Analyst",
