@@ -63,20 +63,15 @@ def duckduckgo_search(query: str) -> str:
 # ---------------------------------------------------------------------------
 
 def build_crew(topic: str, groq_api_key: str) -> Crew:
-    """
-    Create a CrewAI research crew for the supplied topic.
-    """
+    """Creates and returns a single-agent Crew ready to research `topic`."""
 
-    if not topic or not topic.strip():
-        raise ValueError("Research topic cannot be empty.")
+    llm = LLM(
+        model="groq/openai/gpt-oss-120b",
+        api_key=groq_api_key.strip(),
+        temperature=0.5,
+    )
 
-    if not groq_api_key or not groq_api_key.strip():
-        raise ValueError("Groq API key is missing.")
-llm = LLM(
-    model="groq/openai/gpt-oss-120b",
-    api_key=groq_api_key.strip(),
-    temperature=0.5,
-)
+    researcher = Agent(
 
     researcher = Agent(
         role="Senior Research Analyst",
