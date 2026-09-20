@@ -70,10 +70,12 @@ def build_crew(topic: str, groq_api_key: str) -> Crew:
     # The LLM that powers our agent's "brain".
     # CrewAI has native support for Groq — the model string format is:
     #   groq/<model-id-on-groq>
-    llm = LLM(
-        model="groq/openai/gpt-oss-120b",
-        api_key=groq_api_key,
-        temperature=0.5,
+  llm = LLM(
+    model="groq/openai/gpt-oss-120b",
+    api_key=groq_api_key,
+    temperature=0.5,
+    cache=False,
+)
     )
 
     researcher = Agent(
